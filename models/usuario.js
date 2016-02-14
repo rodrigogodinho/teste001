@@ -1,6 +1,5 @@
 module.exports = function(app){
-  var mongoose = require('mongoose');
-  var Schema = mongoose.Schema;
+  var Schema = global.mongoose.Schema;
 
   var ocorrencia = Schema({
     placa: {type: String, required: true},
@@ -16,5 +15,5 @@ module.exports = function(app){
     ocorrencias: [ocorrencia]
   });
 
-  return mongoose.model('usuarios', usuario);
+  return global.mongoose.model('usuarios', usuario);
 };
