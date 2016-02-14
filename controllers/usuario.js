@@ -5,12 +5,12 @@ module.exports = function(app){
 
       new Usuarios(req.body.usuario).save( function(erro, usuario){
         if(erro){
-          res.send(erro);
-          res.status(500);
-          return console.log(erro);
+          //res.send(erro);
+          res.status(500).send(erro);
+          console.log(erro);
         }
-        res.send(usuario);
-        res.status(201);
+        //res.send(usuario);
+        res.status(201).send(usuario);
         console.log(usuario);
       });
     },
