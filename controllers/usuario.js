@@ -2,7 +2,8 @@ module.exports = function(app){
   var Usuarios = app.models.usuario;
   var usuarioController = {
     create: function(req, res){
-      new Usuarios(req.body.usuario).save( function(erro, usuario){
+      var usuarioReq = req.body;
+      new Usuarios(usuarioReq).save( function(erro, usuario){
         if(erro){
           //res.send(erro);
           res.status(500).send(erro);
@@ -47,10 +48,12 @@ module.exports = function(app){
             res.status(500).send(erro);
           }else{
             if(usuario){
-              var newData = req.body.usuario;
+              var newData = req.body;
               for(var attr in newData){
                 if(newData[attr]){
-                  usuario[attr] = newData[attr];
+                  if(usuario[attr] != newData[attr]){
+                    usuario[attr] = newData[attr];
+                  }
                 }
               }
               usuario.save(function(erro, usuario){
