@@ -3,6 +3,7 @@ module.exports = function(app){
   var usuarioController = {
     create: function(req, res){
       var usuarioReq = req.body;
+      if(usuarioReq)
       new Usuarios(usuarioReq).save( function(erro, usuario){
         if(erro){
           //res.send(erro);
@@ -50,7 +51,7 @@ module.exports = function(app){
             if(usuario){
               var newData = req.body;
               for(var attr in newData){
-                if(newData[attr]){
+                if(newData[attr] && usuario[attr]){
                   if(usuario[attr] != newData[attr]){
                     usuario[attr] = newData[attr];
                   }
